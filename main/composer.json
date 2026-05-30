@@ -21,8 +21,7 @@
         "laravel/tinker": "^3.0",
         "spatie/fork": "^1.2",
         "statamic/cms": "^6.0",
-        "statamic/eloquent-driver": "^5.9",
-        "statamic/ssg": "^4.1"
+        "statamic/eloquent-driver": "^5.9"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

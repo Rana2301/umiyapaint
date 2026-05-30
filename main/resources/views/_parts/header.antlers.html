@@ -1,68 +1,62 @@
-<nav class="alt_header fixed top-0 left-0 w-screen bg-black text-white z-50">
-    <div class="container mx-auto px-6 py-7 flex justify-between items-center">
-        <a href="/" aria-label="Back to Homepage">
-            <img src="/images/alt_logo.svg" alt="{{ config:app:name }}" class="w-[100px]">
-            <!--                    <img src="{{ glide src='/images/logo.png' format='webp' width='100'}}" alt="{{ config:app:name }}" class="w-[100px]">-->
-        </a>
-        <ul class="links hidden lg:flex">
-            {{ nav:main_nav }}
-                {{ if children }}
-                <li class="relative group">
-                    <a href="{{ url }}" aria-label="{{ title }}" class="whitespace-nowrap px-10 py-7 hover:underline">{{ title }}</a>
-                    <ul class="absolute top-[100%] right-0 bg-black py-5 space-y-5 shadow-md mt-5 hidden group-hover:flex flex-col">
-                        {{ *recursive children* }}
-                    </ul>
-                </li>
-                {{ else }}
-                <li class="">
-                    <a href="{{ url }}" aria-label="{{ title }}" class="whitespace-nowrap px-10 py-7 hover:underline">{{ title }}</a>
-                </li>
-                {{ /if }}
-            {{ /nav:main_nav }}
-        </ul>
-        <div class="mob-nav flex lg:hidden items-center" x-on:click="navOpen = ! navOpen">
-            <div class="hamburger hamburger--spin" style="z-index: 9999999;" x-bind:class="navOpen ? 'is-active' : ''">
-                <div class="hamburger-box">
-                    <div class="hamburger-inner"></div>
+ <header class="header sticky-active">
+            <div class="primary-header">
+                <div class="container">
+                    <div class="primary-header-inner">
+                        <div class="header-left-wrap">
+                            <div class="header-logo d-lg-block">
+                                <a href="index.html">
+                                    <img src="/assets/img/logo/logo-2.png" alt="Umiya Hardware & Paints Logo">
+                                </a>
+                            </div>
+                            <div class="header-menu-wrap">
+                                <div class="mobile-menu-items">
+
+    <ul>
+
+        {{ nav:main_nav }}
+
+            <li>
+                <a href="{{ url }}">
+                    {{ title }}
+                </a>
+            </li>
+
+        {{ /nav:main_nav }}
+
+    </ul>
+
+</div>
+                            </div>
+                            <!-- /.header-menu-wrap -->
+                        </div>
+                        <div class="header-right-wrap">
+                            <a href="tel:{{ contact_details:telephone }}" class="header-contact">
+                                <span class="icon"><i class="fa-regular fa-phone"></i></span>
+                                <span class="content">
+                                    <span class="call-text">Call Us Phone</span>
+                                    <span class="call-number">{{ contact_details:telephone }}</span>
+                                </span>
+                            </a>
+                            <div class="header-btn-wrap">
+                                <a href="contact.html" class="tl-primary-btn header-btn">Get in Touch</a>
+                            </div>
+                            <div class="search-icon dl-search-icon">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <div class="sidebar-icon">
+                                <button class="sidebar-trigger open">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11 2C11 0.89543 11.8954 0 13 0H14C15.1046 0 16 0.895431 16 2V3C16 4.10457 15.1046 5 14 5H13C11.8954 5 11 4.10457 11 3V2Z" fill="currentColor"/>
+                                        <path d="M0 2C0 0.89543 0.895431 0 2 0H3C4.10457 0 5 0.895431 5 2V3C5 4.10457 4.10457 5 3 5H2C0.89543 5 0 4.10457 0 3V2Z" fill="currentColor"/>
+                                        <path d="M0 13C0 11.8954 0.895431 11 2 11H3C4.10457 11 5 11.8954 5 13V14C5 15.1046 4.10457 16 3 16H2C0.89543 16 0 15.1046 0 14V13Z" fill="currentColor"/>
+                                        <path d="M11 13C11 11.8954 11.8954 11 13 11H14C15.1046 11 16 11.8954 16 13V14C16 15.1046 15.1046 16 14 16H13C11.8954 16 11 15.1046 11 14V13Z" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- /.header-right -->
+                        </div>
+                    </div>
+                    <!-- /.primary-header-inner -->
                 </div>
             </div>
-        </div>
-
-    </div>
-</nav>
-
-<div class="mobile-menu fixed top-0 right-0 left-0 bg-black text-white z-40 transition-all duration-500" x-bind:class="navOpen ? 'bottom-0 preventScroll' : 'bottom-[100%]'" x-cloak>
-    <div class="overflow-y-scroll w-screen h-full max-h-screen">
-        <div class="spacer"></div>
-        <ul class="links space-y-7 px-6 pb-10">
-        {{ nav:main_nav }}
-            {{ if children }}
-            <li class="" x-data="{subnav: false}">
-                <div class="flex justify-between" x-on:click="subnav = ! subnav">
-                    {{ title }}
-                    <svg class="transition" x-bind:class="subnav ? 'rotate-180' : ''"
-                        xmlns="http://www.w3.org/2000/svg" width="20" height="10.909" viewBox="0 0 20 10.909">
-                        <path id="Down_Arrow_3_" d="M30,50.909a.906.906,0,0,1-.643-.266l-9.091-9.091a.909.909,0,0,1,1.285-1.285L30,48.714l8.448-8.448a.909.909,0,0,1,1.285,1.285l-9.091,9.091A.906.906,0,0,1,30,50.909Z" transform="translate(-20 -40)" fill="#FFF"/>
-                    </svg>
-
-                </div>
-                <div class="mob-subnav" x-bind:class="subnav ? 'h-full max-h-[400px] visible' : 'h-0 invisible'">
-                    <div class="px-3 flex flex-col">
-                    {{ children }}
-                        <a href="{{ url }}" aria-label="{{ title }}" class= pt-5 x-on:click="navOpen = ! navOpen">{{ title }}</a>
-                    {{ /children }}
-                    </div>
-                </div>
-            </li>
-            {{ else }}
-            <li>
-                <a href="{{ url }}" aria-label="{{ title }}">{{ title }}</a>
-            </li>
-            {{ /if }}
-        {{ /nav:main_nav }}
-        </ul>
-    </div>
-</div>
-
-<div class="spacer"></div>
-
+        </header>

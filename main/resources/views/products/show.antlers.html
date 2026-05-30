@@ -1,0 +1,157 @@
+<section class="page-header">
+            <div class="bg-img" data-background="/assets/img/bg-img/page-header-bg.png"></div>
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="page-header-content">
+                    <h1 class="title">{{ title }}</h1>
+                    <h4 class="sub-title"><a class='home' href='/'>Home </a><span class="icon">-</span><a class='inner-page' href='/product'> Products</a><span class="icon">-</span><span> {{ title }}</span></h4>
+                </div>
+            </div>
+        </section>
+        <!-- ./ page-header -->
+
+        <section class="service-details pt-130 pb-130">
+            <div class="container container-2">
+                <div class="row pin-inner">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="service-details-left-content pin-box">
+                            <div class="service-category-list">
+                                <h3 class="list-title">Other Products</h3>
+                                <ul>
+                                    {{ current_id = id }}
+                                    {{ collection from="products" limit="10" }}
+                                        <li class="{{ if id == current_id }}active{{ /if }}">
+                                            <a href="{{ url }}">{{ title }}</a>
+                                        </li>
+                                    {{ /collection }}
+                                </ul>
+                            </div>
+
+                            {{ has_files = false }}
+                            {{ assets }}
+                                {{ if extension == "pdf" || extension == "doc" || extension == "docx" || extension == "xls" || extension == "xlsx" || extension == "zip" }}
+                                    {{ has_files = true }}
+                                {{ /if }}
+                            {{ /assets }}
+
+                            {{ if has_files }}
+                                <div class="service-category-list" style="margin-top: 30px;">
+                                    <h3 class="list-title">Downloads</h3>
+                                    <ul style="padding: 0; list-style: none;">
+                                        {{ assets }}
+                                            {{ if extension == "pdf" || extension == "doc" || extension == "docx" || extension == "xls" || extension == "xlsx" || extension == "zip" }}
+                                                <li style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                                                    <a href="{{ url }}" target="_blank" style="display: flex; align-items: center; justify-content: space-between; font-weight: 600; color: #1e1e1e; text-decoration: none;">
+                                                        <span>
+                                                            {{ if extension == "pdf" }}
+                                                                <i class="fa-solid fa-file-pdf" style="color: #e74c3c; margin-right: 10px; font-size: 1.2rem;"></i>
+                                                            {{ elseif extension == "zip" }}
+                                                                <i class="fa-solid fa-file-zipper" style="color: #f1c40f; margin-right: 10px; font-size: 1.2rem;"></i>
+                                                            {{ else }}
+                                                                <i class="fa-solid fa-file-lines" style="color: #3498db; margin-right: 10px; font-size: 1.2rem;"></i>
+                                                            {{ /if }}
+                                                            {{ title ?? filename }}
+                                                        </span>
+                                                        <span style="font-size: 0.85rem; color: #777;">({{ extension | upper }})</span>
+                                                    </a>
+                                                </li>
+                                            {{ /if }}
+                                        {{ /assets }}
+                                    </ul>
+                                </div>
+                            {{ /if }}
+                            <div class="service-details-cta">
+                                <div class="cta-bg" data-background="/assets/img/bg-img/service-cta-bg-2.png"></div>
+                                <div class="icon"><img src="/assets/img/icon/service-details-cta.png" alt="icon"></div>
+                                <span>Do You Need Help?</span>
+                                <a class="number" href="tel:{{ contact_details:telephone }}">{{ contact_details:telephone }}</a>
+                                <a class="mail" href="mailto:{{ contact_details:email }}">{{ contact_details:email }}</a>
+                                <div class="cta-btn">
+                                    <a href="contact.html">Get a call <br> Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12">
+                        <div class="service-details-content scroll-content">
+                            <div class="service-details-img">
+                                {{ has_image = false }}
+                                {{ assets }}
+                                    {{ if extension == "jpg" || extension == "jpeg" || extension == "png" || extension == "gif" || extension == "webp" }}
+                                        {{ if !has_image }}
+                                            {{ has_image = true }}
+                                            {{ image_url = url }}
+                                        {{ /if }}
+                                    {{ /if }}
+                                {{ /assets }}
+                                {{ if has_image }}
+                                    <img src="{{ image_url }}" alt="{{ title }}">
+                                {{ else }}
+                                    <img src="/assets/img/service/service-details-img-1.png" alt="img">
+                                {{ /if }}
+                            </div>
+                            <h1 class="details-title">About {{ title }}</h1>
+                            <div class="product-description-content" style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 30px;">
+                                {{ content }}
+                            </div>
+
+                            <div class="service-faq">
+                                <h3 class="faq-title">Frequently asked questions</h3>
+                                <div class="faq-accordion fade-wrapper">
+                                    <div class="accordion" id="accordionExample">
+                                        <div class="accordion-item fade-top">
+                                            <h2 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    What paint brands do you carry?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    We are authorized dealers and suppliers of premium brands including Asian Paints, Berger Paints, British Paints, Dulux, Birla Opus, ICA, Esdee Paints, and Dr. Fixit.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item fade-top">
+                                            <h2 class="accordion-header" id="headingTwo">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    How do you help with budget vs quality?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    We consult with you regarding your budget, surface requirements, and expected durability to recommend the absolute best value-for-money paints and coatings.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item fade-top">
+                                            <h2 class="accordion-header" id="headingThree">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    Can you match my existing wall colour?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    Yes! We offer computerized shade matching services. Bring in a sample or flake of the paint, and we will tint a precise match for you in minutes.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item fade-top">
+                                            <h2 class="accordion-header" id="headingFour">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                    Do you supply industrial coating solutions?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    Yes, we specialize in high-performance protective industrial coatings and maintenance paints for factories, piping, and warehouses in GIDC Ankleshwar.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
